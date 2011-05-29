@@ -1,0 +1,19 @@
+h1. Baler: A .NET Web Resource Bundler
+
+Baler is a Web Resource Bundler for .NET.  Baler can be used to concatenate CSS or JavaScript files with hooks that allow for manipulation of the bales.  These hooks can be used to provide minification of the content or allow for language dialects to be used such as CoffeeScript or LESS.
+
+h2. Install
+
+h2. Usage
+
+h2. Caching
+
+h2. Extensions
+
+h3. Minification
+
+h3. Less
+
+h3. CoffeeScript
+
+h3. Writing Custom Extensions
