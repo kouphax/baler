@@ -1,0 +1,43 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler", "CodeSlice.Web.Baler\Baler.csproj", "{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler.Test", "CodeSlice.Web.Baler.Test\Baler.Test.csproj", "{4E79BDDE-1C46-45B2-A954-753B663589C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler.Extensions.CoffeeScript", "CodeSlice.Web.Baler.Extensions.CoffeeScript\Baler.Extensions.CoffeeScript.csproj", "{171611AF-33E8-4688-9639-7ED34EA78B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler.Extensions.Less", "CodeSlice.Web.Baler.Extensions.Less\Baler.Extensions.Less.csproj", "{65781974-CA8A-4258-8018-A08CDDAF24F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler.Extensions.AjaxMinifier", "CodeSlice.Web.Baler.Extensions.AjaxMinifier\Baler.Extensions.AjaxMinifier.csproj", "{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E79BDDE-1C46-45B2-A954-753B663589C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E79BDDE-1C46-45B2-A954-753B663589C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E79BDDE-1C46-45B2-A954-753B663589C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E79BDDE-1C46-45B2-A954-753B663589C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{171611AF-33E8-4688-9639-7ED34EA78B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{171611AF-33E8-4688-9639-7ED34EA78B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{171611AF-33E8-4688-9639-7ED34EA78B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{171611AF-33E8-4688-9639-7ED34EA78B43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65781974-CA8A-4258-8018-A08CDDAF24F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65781974-CA8A-4258-8018-A08CDDAF24F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65781974-CA8A-4258-8018-A08CDDAF24F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65781974-CA8A-4258-8018-A08CDDAF24F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

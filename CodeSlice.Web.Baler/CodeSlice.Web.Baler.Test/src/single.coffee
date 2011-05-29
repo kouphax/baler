@@ -1,0 +1,1 @@
+﻿window.coffeescriptsingle = -> "coffeescript-single"

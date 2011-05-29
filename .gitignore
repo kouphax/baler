@@ -1,0 +1,5 @@
+bin/
+obj/
+*.csproj.user
+.DS_Store
+*.suo
