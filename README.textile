@@ -14,7 +14,7 @@ h3.
 
 h3. AsJs()
 
-`AsJS()` 
+@AsJS()@ 
 
 h3. AsCss()
 
@@ -32,14 +32,14 @@ h2. Extensions
 
 Baler supports 2 main hooks for manipulating the content of a bundle,
 
-* `Before` provides the ability to manipulate each item in the bale in turn.  It receives the path to the original item and the content of the item and expects to return the transformed content.
-* `After` provides the ability to manipulate the entire bale before it is written to the output file.  It receives just the content and expects to return the transformed contents.
+* @Before@ provides the ability to manipulate each item in the bale in turn.  It receives the path to the original item and the content of the item and expects to return the transformed content.
+* @After@ provides the ability to manipulate the entire bale before it is written to the output file.  It receives just the content and expects to return the transformed contents.
 
 EXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLE
 
 h3. Order
 
-Both of these methods can accept an optional `order` parameter that can be used to control the order of execution.  For example the MS Ajax Minifier Extension need to run after all other possible transforms so it is given an order of 999 to prevent it executing early.
+Both of these methods can accept an optional @order@ parameter that can be used to control the order of execution.  For example the MS Ajax Minifier Extension need to run after all other possible transforms so it is given an order of 999 to prevent it executing early.
 
 EXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLE
 
