@@ -1,6 +1,6 @@
 h1. Baler: A .NET Web Resource Bundler
 
-Baler is a Web Resource Bundler for .NET.  Baler can be used to concatenate CSS or JavaScript files with hooks that allow for manipulation of the bales.  These hooks can be used to provide minification of the content or allow for language dialects to be used such as CoffeeScript or LESS.  Baler can be used within WebForms and ASP.NET MVC (as well as any other web framework view engine that supports execution of server side code)
+Baler is a Web Resource Bundler for .NET.  Baler can be used to concatenate CSS or JavaScript files with hooks that allow for manipulation of the bales.  These hooks can be used to provide minification of the content or allow for language dialects to be used such as CoffeeScript or LESS.  Baler can be used within WebForms and ASP.NET MVC (as well as any other web framework view engine that supports execution of server side code).  It uses a semi-fluent API to ensure code is clean and readable.
 
 h2. Install
 
@@ -10,9 +10,11 @@ h2. Usage
 
 Baler
 
+h3. 
+
 h3. AsJs()
 
-Coming Soon
+`AsJS()` 
 
 h3. AsCss()
 
@@ -27,6 +29,19 @@ h2. Caching
 Coming Soon
 
 h2. Extensions
+
+Baler supports 2 main hooks for manipulating the content of a bundle,
+
+* `Before` provides the ability to manipulate each item in the bale in turn.  It receives the path to the original item and the content of the item and expects to return the transformed content.
+* `After` provides the ability to manipulate the entire bale before it is written to the output file.  It receives just the content and expects to return the transformed contents.
+
+EXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLE
+
+h3. Order
+
+Both of these methods can accept an optional `order` parameter that can be used to control the order of execution.  For example the MS Ajax Minifier Extension need to run after all other possible transforms so it is given an order of 999 to prevent it executing early.
+
+EXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLE
 
 h3. Minification
 
