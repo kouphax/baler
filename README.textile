@@ -1,19 +1,52 @@
 h1. Baler: A .NET Web Resource Bundler
 
-Baler is a Web Resource Bundler for .NET.  Baler can be used to concatenate CSS or JavaScript files with hooks that allow for manipulation of the bales.  These hooks can be used to provide minification of the content or allow for language dialects to be used such as CoffeeScript or LESS.
+Baler is a Web Resource Bundler for .NET.  Baler can be used to concatenate CSS or JavaScript files with hooks that allow for manipulation of the bales.  These hooks can be used to provide minification of the content or allow for language dialects to be used such as CoffeeScript or LESS.  Baler can be used within WebForms and ASP.NET MVC (as well as any other web framework view engine that supports execution of server side code)
 
 h2. Install
 
+Coming Soon
+
 h2. Usage
 
+Baler
+
+h3. AsJs()
+
+Coming Soon
+
+h3. AsCss()
+
+Coming Soon
+
+h3. Before and After
+
+Coming Soon
+
 h2. Caching
+
+Coming Soon
 
 h2. Extensions
 
 h3. Minification
 
-h3. Less
+Coming Soon
+
+h3. LESS
+
+Coming Soon
 
 h3. CoffeeScript
 
+Coming Soon
+
 h3. Writing Custom Extensions
+
+Coming Soon
+
+h2. Annotated Source Code
+
+The annotated source code for Baler is available in 2 parts,
+
+# "Baler Core":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler/Baler.html
+# "Baler Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.AjaxMinifier/MinificationExtensions.html
