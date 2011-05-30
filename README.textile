@@ -24,7 +24,7 @@ h3. Starter for 10
 
 You will use the @Build@ method to construct your bales.  Just add a reference to the Baler namespace which ever way you want,
 
-{% highlight aspx %}
+{% highlight aspx-cs %}
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CodeSlice.Web.Test.Default" %>
 <%@ Import Namespace="CodeSlice.Web.Baler" %>
 
@@ -39,7 +39,7 @@ You will use the @Build@ method to construct your bales.  Just add a reference t
 
 Next we need to tell Baler to construct a bale from a number of scripts
 
-{% highlight aspx %}
+{% highlight aspx-cs %}
   <head>
     <%=
       Baler.Build(
@@ -53,7 +53,7 @@ Next we need to tell Baler to construct a bale from a number of scripts
 
 Finally we need to specify how we should render this bundle.  We've included a number of javascript files so let's render it as JavaScript.
 
-{% highlight aspx %}
+{% highlight aspx-cs %}
     <%=
       Baler.Build(
         "~/scripts/script1.js",
@@ -65,7 +65,7 @@ Finally we need to specify how we should render this bundle.  We've included a n
 
 The our final markup should look like this,
 
-{% highlight aspx %}
+{% highlight aspx-cs %}
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CodeSlice.Web.Test.Default" %>
 <%@ Import Namespace="CodeSlice.Web.Baler" %>
 
