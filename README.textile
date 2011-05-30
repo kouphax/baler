@@ -20,9 +20,77 @@ git clone https://github.com/kouphax/baler.git
 
 h2. Usage
 
-Baler
+h3. Starter for 10
 
-h3. 
+You will use the @Build@ method to construct your bales.  Just add a reference to the Baler namespace which ever way you want,
+
+{% highlight html %}
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CodeSlice.Web.Test.Default" %>
+<%@ Import Namespace="CodeSlice.Web.Baler" %>
+
+<!DOCTYPE HTML />
+<html>
+  <head>
+  </head>
+  <body>
+  </body>
+</html>
+{% endhighlight %}
+
+Next we need to tell Baler to construct a bale from a number of scripts
+
+{% highlight html %}
+  <head>
+    <%=
+      Baler.Build(
+        "~/scripts/script1.js",
+        "~/scripts/script2.js",
+        "~/scripts/script3.js",
+      )
+    %>
+  </head>
+{% endhighlight %}
+
+Finally we need to specify how we should render this bundle.  We've included a number of javascript files so let's render it as JavaScript.
+
+{% highlight csharp %}
+    <%=
+      Baler.Build(
+        "~/scripts/script1.js",
+        "~/scripts/script2.js",
+        "~/scripts/script3.js",
+      ).AsJs()
+    %>
+{% endhighlight %}
+
+The our final markup should look like this,
+
+{% highlight html %}
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CodeSlice.Web.Test.Default" %>
+<%@ Import Namespace="CodeSlice.Web.Baler" %>
+
+<!DOCTYPE HTML />
+<html>
+  <head>
+    <%=
+      Baler.Build(
+        "~/scripts/script1.js",
+        "~/scripts/script2.js",
+        "~/scripts/script3.js",
+      ).AsJs()
+    %>
+  </head>
+  <body>
+  </body>
+</html>
+{% endhighlight %}
+
+h3. Baler
+
+@Baler@ is the main classed used in the Baler solution.  It is responsible for two things,
+
+# Providing a mechanism for building/defining bales, and,
+# Providing a simple caching mechanism to reduce unnecessary rebuilding of bales.
 
 h3. AsJs()
 
