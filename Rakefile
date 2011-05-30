@@ -1,9 +1,6 @@
 require 'rocco/tasks'
 
-desc "Build Rocco Docs"
+desc "Build Rocco Docs for Baler"
 Rocco::make '../baler-docs/', 'CodeSlice.Web.Baler/CodeSlice.Web.Baler/*.cs', {
-  :language => 'csharp'
-}
-Rocco::make '../baler-docs/', 'CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.*/*.cs', {
   :language => 'csharp'
 }

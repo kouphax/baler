@@ -16,9 +16,4 @@
     it("should successfuly bale a single stylesheet without changing the behaviour", function(){
         expect(document.getElementById('single')).toBeHidden();
     });
-
-    it("should successfuly bale a single coffeescript file into javascript without changing the behaviour", function(){
-        expect(window.coffeescriptsingle).toBeDefined();
-        expect(window.coffeescriptsingle()).toBe('coffeescript-single');
-    });
 });

@@ -78,17 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="lib\jasmine-1.0.2\MIT.LICENSE" />
-    <None Include="src\single.coffee" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeSlice.Web.Baler.Extensions.AjaxMinifier\Baler.Extensions.AjaxMinifier.csproj">
-      <Project>{D81DCBEB-1FB3-4A26-87DB-4F2F492E4809}</Project>
-      <Name>Bales.Extensions.AjaxMinifier</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeSlice.Web.Baler.Extensions.CoffeeScript\Baler.Extensions.CoffeeScript.csproj">
-      <Project>{171611AF-33E8-4688-9639-7ED34EA78B43}</Project>
-      <Name>Bales.Extensions.CoffeeScript</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeSlice.Web.Baler\Baler.csproj">
       <Project>{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}</Project>
       <Name>Bales</Name>

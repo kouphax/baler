@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CodeSlice.Web.Test.Default" %>
 <%@ Import Namespace="CodeSlice.Web.Baler" %>
-<%@ Import Namespace="CodeSlice.Web.Baler.Extensions.CoffeeScript" %>
-<%@ Import Namespace="CodeSlice.Web.Baler.Extensions.AjaxMinifier" %>
 
 <!DOCTYPE HTML />
 <html>
@@ -14,7 +12,6 @@
   <!-- include source files here... -->
   <%=Baler.Build("~/src/single.js").AsJs()%>
   <%=Baler.Build("~/src/single.css").AsCss()%>
-  <%=Baler.Build("~/src/single.coffee").AsCoffeeScript()%>
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="spec/baler.spec.js"></script>
