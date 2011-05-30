@@ -123,17 +123,14 @@ Both of these methods can accept an optional @order@ parameter that can be used 
 
 EXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLEEXAMPLE
 
-h3. Minification
+h3. Available Extensions
 
 Coming Soon
 
-h3. LESS
+# "AjaxMin Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.AjaxMinifier/MinificationExtensions.html
+# ".LESS Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.Less/LessExtensions.html
+# "CoffeeScript Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.CoffeeScript/CoffeeScriptExtensions.html
 
-Coming Soon
-
-h3. CoffeeScript
-
-Coming Soon
 
 h3. Writing Custom Extensions
 
@@ -144,4 +141,7 @@ h2. Annotated Source Code
 The annotated source code for Baler is available in 2 parts,
 
 # "Baler Core":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler/Baler.html
-# "Baler Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.AjaxMinifier/MinificationExtensions.html
+# Baler Extensions
+  # "AjaxMin Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.AjaxMinifier/MinificationExtensions.html
+  # ".LESS Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.Less/LessExtensions.html
+  # "CoffeeScript Extensions":http://kouphax.github.com/baler/CodeSlice.Web.Baler/CodeSlice.Web.Baler.Extensions.CoffeeScript/CoffeeScriptExtensions.html
