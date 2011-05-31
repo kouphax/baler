@@ -4,11 +4,7 @@ h2. Install
 
 The simplest way to install Baler is using NuGet Package Manager
 
-{% highlight console %}
-
-Install-Package CodeSlice.Web.Baler
-
-{% endhighlight %}
+<script src="https://gist.github.com/1000069.js?file=Test.ps"></script>
 
 Alternatively clone the GitHub repository 
 
