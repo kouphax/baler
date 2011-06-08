@@ -1,6 +1,11 @@
 *8th June 2011*
 _v0.2_
 
+- Updated @IBale.Attr@ to allow attributes that have no value to be specified
+
+*8th June 2011*
+_v0.2_
+
 - Added @IBale.Attr(string name, string value)@ method for adding custom attributes.
 
 *31st May 2011*

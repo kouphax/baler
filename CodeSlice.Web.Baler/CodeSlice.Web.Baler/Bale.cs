@@ -95,9 +95,20 @@ namespace CodeSlice.Web.Baler
         // should produce a link tag like so
         //
         //    <link rel="stylesheet" type="text/css" href="..." media="screen" /> 
-        public IBale Attr(string name, string value)
+        // 
+        // Supports attributes with values as well as attributes with no values 
+        // such as `async` or `defer`
+        public IBale Attr(string name, string value = "")
         {
-            _attrs.Add(string.Format("{0}='{1}'", name, value));
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                _attrs.Add(string.Format("{0}", name));
+            }
+            else
+            {
+                _attrs.Add(string.Format("{0}='{1}'", name, value));
+            }
+
             return this;
         }
 

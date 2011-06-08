@@ -28,6 +28,6 @@ namespace CodeSlice.Web.Baler
         // should produce a link tag like so
         //
         //    <link rel="stylesheet" type="text/css" href="..." media="screen" /> 
-        IBale Attr(string name, string value);
+        IBale Attr(string name, string value = "");
     }
 }
