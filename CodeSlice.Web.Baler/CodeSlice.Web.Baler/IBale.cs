@@ -20,5 +20,14 @@ namespace CodeSlice.Web.Baler
         // Adds a function to execute on the concatenated bale content.  
         // It gets the contents and returns the transformed content
         IBale After(Func<string, string> processor, int order = 0);
+
+        // Adds a custom attribute to the output tag for this bale e.g.
+        //
+        //     bale.Attr("media", "screen").AsCss();
+        //
+        // should produce a link tag like so
+        //
+        //    <link rel="stylesheet" type="text/css" href="..." media="screen" /> 
+        IBale Attr(string name, string value);
     }
 }

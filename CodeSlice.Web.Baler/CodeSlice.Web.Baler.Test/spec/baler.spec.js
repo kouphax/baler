@@ -16,4 +16,8 @@
     it("should successfuly bale a single stylesheet without changing the behaviour", function(){
         expect(document.getElementById('single')).toBeHidden();
     });
+
+    it("should set custom attributes on bales if they are specified", function(){
+        expect(document.getElementById('customattr')).toBeDefined();
+    });
 });

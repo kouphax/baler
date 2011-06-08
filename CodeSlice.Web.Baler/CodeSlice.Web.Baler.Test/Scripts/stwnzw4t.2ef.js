@@ -1,0 +1,1 @@
+window.globalSimple = "success";

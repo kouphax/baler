@@ -16,8 +16,8 @@ namespace CodeSlice.Web.Baler
         // ###  Private variable declarations
 
         // Declare the templates used to output the html tags at the end
-        private static readonly string SCRIPT_TAG_TPL = @"<script type='text/javascript' src='{0}'></script>";
-        private static readonly string STYLE_TAG_TPL = @"<link href='{0}' rel='stylesheet' type='text/css' />";
+        private static readonly string SCRIPT_TAG_TPL = @"<script type='text/javascript' src='{0}' {1}></script>";
+        private static readonly string STYLE_TAG_TPL = @"<link href='{0}' rel='stylesheet' type='text/css' {1}/>";
 
         // Hold the references to the bale source items
         private string[] _items;
@@ -29,7 +29,8 @@ namespace CodeSlice.Web.Baler
         private SortedList<int, Func<string, string, string>> _before;
         private SortedList<int, Func<string, string>> _after; 
 
-        
+        // Holds all the custom attributes to be appended to the output tag
+        private List<string> _attrs;
 
         // Hold flag and result to ensure that a bale is only generated once
         // Currently this presents an issue.  If we generate a JS bale first 
@@ -48,6 +49,7 @@ namespace CodeSlice.Web.Baler
             _items = items;
             _before = new SortedList<int, Func<string, string, string>>();
             _after = new SortedList<int, Func<string, string>>();
+            _attrs = new List<string>();
 
             // set the key based on bale contents
             Key = Bale.GenerateKey(items);
@@ -83,6 +85,19 @@ namespace CodeSlice.Web.Baler
         public IBale After(Func<string, string> processor, int order = 0)
         {
             _after.Add(order, processor);
+            return this;
+        }
+
+        // Adds a custom attribute to the output tag for this bale e.g.
+        //
+        //     bale.Attr("media", "screen").AsCss();
+        //
+        // should produce a link tag like so
+        //
+        //    <link rel="stylesheet" type="text/css" href="..." media="screen" /> 
+        public IBale Attr(string name, string value)
+        {
+            _attrs.Add(string.Format("{0}='{1}'", name, value));
             return this;
         }
 
@@ -138,7 +153,9 @@ namespace CodeSlice.Web.Baler
                 string relativeOutputFile = GetRelativeOutputPath(outputFilename);
 
                 // Create the script tag from the path and the supplied template
-                string tag = string.Format(template, relativeOutputFile);
+                // and a join of all custom attributes
+                string attrs = string.Join(" ", _attrs);
+                string tag = string.Format(template, relativeOutputFile, attrs);
 
                 // Copy all files into a single output file
                 ConcatenateAllFiles(outputFile);

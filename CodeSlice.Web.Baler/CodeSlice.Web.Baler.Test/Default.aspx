@@ -12,6 +12,7 @@
   <!-- include source files here... -->
   <%=Baler.Build("~/src/single.js").AsJs()%>
   <%=Baler.Build("~/src/single.css").AsCss()%>
+  <%=Baler.Build("~/src/media.css").Attr("id", "customattr").AsCss()%>
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="spec/baler.spec.js"></script>

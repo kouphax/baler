@@ -1,0 +1,9 @@
+*8th June 2011*
+_v0.2_
+
+- Added @IBale.Attr(string name, string value)@ method for adding custom attributes.
+
+*31st May 2011*
+_v0.1_
+
+- Intial Release
