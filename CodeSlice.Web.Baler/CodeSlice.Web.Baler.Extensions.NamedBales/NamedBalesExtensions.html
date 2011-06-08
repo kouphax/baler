@@ -25,6 +25,7 @@
       </td>
       <td class=code>
         <div class='highlight'><pre><span class="err">﻿</span><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">CodeSlice.Web.Baler.Extensions.NamedBales</span>
 <span class="p">{</span></pre></div>
@@ -51,7 +52,7 @@ a bale with 3 scripts and name it</p>
 <code>Global.asax</code>.  Next we can render this bundle using <code>AsJs</code> later in the
 app like so,</p>
 
-<pre><code>NamedBale.Called("base").AsJs();
+<pre><code>NamedBales.Get("base").AsJs();
 </code></pre>
 
 <p>Currently this doesn&rsquo;t short circuit Balers internal cache so a second
@@ -59,7 +60,7 @@ cache check will be made using the internal hashing mechanism.  This is
 either a good thing or a bad thing.  But for now it&rsquo;s a good thing!</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>    <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">NamedBale</span>
+        <div class='highlight'><pre>    <span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">NamedBales</span>
     <span class="p">{</span></pre></div>
       </td>
     </tr>
@@ -79,7 +80,7 @@ either a good thing or a bad thing.  But for now it&rsquo;s a good thing!</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-4">&#182;</a>
         </div>
-        <p><code>Name</code> adds some sugar to the <code>IBale</code> interface allowing us to apply
+        <p><code>NameAs</code> adds some sugar to the <code>IBale</code> interface allowing us to apply
 a friendly name to a bale.  There is currently no check to see if the
 bale name is already taken.  Existing definitions will be
 overwritten.</p>
@@ -98,19 +99,19 @@ overwritten.</p>
           <a class="pilcrow" href="#section-5">&#182;</a>
         </div>
         <p>Allows us to retrieve a bale based on a friendly name defined by the
-developer.  Will retun <code>null</code> if the name doesn&rsquo;t exist &ndash; otherwise
+developer.  Will throw an exception if the bale doesn&rsquo;t exist &ndash; otherwise
 the bale itself.</p>
 
       </td>
       <td class=code>
-        <div class='highlight'><pre>        <span class="k">public</span> <span class="k">static</span> <span class="n">IBale</span> <span class="nf">Called</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+        <div class='highlight'><pre>        <span class="k">public</span> <span class="k">static</span> <span class="n">IBale</span> <span class="nf">Get</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="k">if</span><span class="p">(</span><span class="n">_cache</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
             <span class="p">{</span>
                 <span class="k">return</span> <span class="n">_cache</span><span class="p">[</span><span class="n">name</span><span class="p">];</span>
             <span class="p">}</span>
 
-            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;No Bale exists with the name of {0}&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">));</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span></pre></div>

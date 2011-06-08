@@ -96,10 +96,28 @@ transformed content</p>
         </div>
         <p>Adds a function to execute on the concatenated bale content.<br/>
 It gets the contents and returns the transformed content</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>        <span class="n">IBale</span> <span class="nf">After</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">processor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">order</span> <span class="p">=</span> <span class="m">0</span><span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-7'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-7">&#182;</a>
+        </div>
+        <p>Adds a custom attribute to the output tag for this bale e.g.</p>
+
+<pre><code>bale.Attr("media", "screen").AsCss();
+</code></pre>
+
+<p>should produce a link tag like so</p>
+
+<p>   <link rel="stylesheet" type="text/css" href="..." media="screen" /></p>
 
       </td>
       <td class=code>
-        <div class='highlight'><pre>        <span class="n">IBale</span> <span class="nf">After</span><span class="p">(</span><span class="n">Func</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">&gt;</span> <span class="n">processor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">order</span> <span class="p">=</span> <span class="m">0</span><span class="p">);</span>
+        <div class='highlight'><pre>        <span class="n">IBale</span> <span class="nf">Attr</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">string</span> <span class="k">value</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span></pre></div>
       </td>
