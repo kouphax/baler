@@ -143,7 +143,7 @@ namespace CodeSlice.Web.Baler
         }
 
         // ###  Private Methods
-        
+
         // `GenerateBale` is the primary method of a bale.  It is 
         // responbile for calculating the output file name and directory, 
         // concatenating and processing the input file and piping them out to 
@@ -156,9 +156,18 @@ namespace CodeSlice.Web.Baler
             // again if this is the case
             if (!_isGenerated)
             {
+                // Copy all files into a single output string and process
+                string content = ConcatenateAllFiles();
+                string filename = GenerateKey(content);
+
                 // Build output file based on a random name and REAL path to output directory
-                string outputFilename = string.Format("{0}.{1}", Path.GetRandomFileName(), extension);
+                string outputFilename = string.Format("{0}.{1}", filename, extension);
                 string outputFile = GetOutputFileWithPath(outputFilename);
+
+                if (!File.Exists(outputFile))
+                {
+                    File.WriteAllText(outputFile, content);
+                }
 
                 // Calculate relative values for the path so we can output the tag
                 string relativeOutputFile = GetRelativeOutputPath(outputFilename);
@@ -167,9 +176,6 @@ namespace CodeSlice.Web.Baler
                 // and a join of all custom attributes
                 string attrs = string.Join(" ", _attrs);
                 string tag = string.Format(template, relativeOutputFile, attrs);
-
-                // Copy all files into a single output file
-                ConcatenateAllFiles(outputFile);
 
                 _generatedTag = tag;
                 _isGenerated = true;
@@ -201,8 +207,9 @@ namespace CodeSlice.Web.Baler
         }
 
         // Iterates over the current bales items and processes and 
-        // concatenates them into the passed in output file
-        private void ConcatenateAllFiles(string outputFile)
+        // concatenates them into a StringBuffer and returns the resultant
+        // string
+        private string ConcatenateAllFiles()
         {
             StringBuilder mergedItems = new StringBuilder();
 
@@ -235,7 +242,7 @@ namespace CodeSlice.Web.Baler
                 outputContent = after(outputContent);
             }
 
-            File.WriteAllText(outputFile, outputContent);
+            return outputContent;
         }
     }
 }

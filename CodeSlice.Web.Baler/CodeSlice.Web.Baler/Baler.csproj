@@ -44,6 +44,7 @@
     <Compile Include="Bale.cs" />
     <Compile Include="Baler.cs" />
     <Compile Include="BalerConfiguration.cs" />
+    <Compile Include="FileWriter.cs" />
     <Compile Include="IBale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
