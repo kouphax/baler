@@ -33,7 +33,7 @@ namespace CodeSlice.Web.Baler
         {
             // Check cache to see if bale is currently defined and return 
             // cached value otherwise create a new bale and cache it
-            string key = Bale.GenerateKey(items);
+            string key = Bale.Hash(items);
             if (!_cache.ContainsKey(key))
             {
                 _cache[key] = new Bale(items);

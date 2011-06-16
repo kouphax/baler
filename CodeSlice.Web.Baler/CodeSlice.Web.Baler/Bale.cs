@@ -51,8 +51,10 @@ namespace CodeSlice.Web.Baler
             _after = new SortedList<int, Func<string, string>>();
             _attrs = new List<string>();
 
-            // set the key based on bale contents
-            Key = Bale.GenerateKey(items);
+            // Calculates a `key` for the current bale by joining all the 
+            // required paths of items and creating a hash.  This means we
+            // can uniquely identify a set of items as a bale e.g. for caching
+            Key = Bale.Hash(items);
         }
 
         // ###  Public Methods
@@ -123,11 +125,9 @@ namespace CodeSlice.Web.Baler
         }
 
         // ### Static Methods
-
-        // Calculates a `key` for the current bale by joining all the 
-        // required paths of items and creating a hash.  This means we
-        // can uniquely identify a set of items as a bale e.g. for caching
-        public static string GenerateKey(params string[] items)
+        
+        // Concatenates 
+        public static string Hash(params string[] items)
         {
             string key = string.Join(string.Empty, items);
             byte[] buffer = Encoding.UTF8.GetBytes(key);
@@ -158,14 +158,19 @@ namespace CodeSlice.Web.Baler
             {
                 // Copy all files into a single output string and process
                 string content = ConcatenateAllFiles();
-                string filename = GenerateKey(content);
+                string filename = Hash(content);
 
-                // Build output file based on a random name and REAL path to output directory
+                // Build output file based on content hash and REAL path to 
+                // output directory
                 string outputFilename = string.Format("{0}.{1}", filename, extension);
                 string outputFile = GetOutputFileWithPath(outputFilename);
 
+                // Ensure file doesn't exist before processing it.  This means
+                // newly added processors will not get processed.  There needs 
+                // to be a cleaner way to do this.
                 if (!File.Exists(outputFile))
                 {
+                    // Write contents to file
                     File.WriteAllText(outputFile, content);
                 }
 
@@ -177,6 +182,8 @@ namespace CodeSlice.Web.Baler
                 string attrs = string.Join(" ", _attrs);
                 string tag = string.Format(template, relativeOutputFile, attrs);
 
+                // Cache generated tag and mark bale as generated to prevent 
+                // future unnecessary processing.
                 _generatedTag = tag;
                 _isGenerated = true;
             }
