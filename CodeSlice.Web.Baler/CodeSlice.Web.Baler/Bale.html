@@ -15,6 +15,7 @@
           <a class="source" href="Bale.html">Bale.cs</a>
           <a class="source" href="Baler.html">Baler.cs</a>
           <a class="source" href="BalerConfiguration.html">BalerConfiguration.cs</a>
+          <a class="source" href="FileWriter.html">FileWriter.cs</a>
           <a class="source" href="IBale.html">IBale.cs</a>
       </div>
     </div>
@@ -170,10 +171,12 @@ parameters that represent the bale items.</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-11">&#182;</a>
         </div>
-        <p>set the key based on bale contents</p>
+        <p>Calculates a <code>key</code> for the current bale by joining all the
+required paths of items and creating a hash.  This means we
+can uniquely identify a set of items as a bale e.g. for caching</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>            <span class="n">Key</span> <span class="p">=</span> <span class="n">Bale</span><span class="p">.</span><span class="n">GenerateKey</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
+        <div class='highlight'><pre>            <span class="n">Key</span> <span class="p">=</span> <span class="n">Bale</span><span class="p">.</span><span class="n">Hash</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
         <span class="p">}</span></pre></div>
       </td>
     </tr>
@@ -319,7 +322,7 @@ identify this bale based in it&rsquo;s initial contents</p>
         <h3>Static Methods</h3>
       </td>
       <td class=code>
-        <div class='highlight'><pre></pre></div>
+        <div class='highlight'><pre>        </pre></div>
       </td>
     </tr>
     <tr id='section-21'>
@@ -327,12 +330,10 @@ identify this bale based in it&rsquo;s initial contents</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-21">&#182;</a>
         </div>
-        <p>Calculates a <code>key</code> for the current bale by joining all the
-required paths of items and creating a hash.  This means we
-can uniquely identify a set of items as a bale e.g. for caching</p>
+        <p>Concatenates</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">GenerateKey</span><span class="p">(</span><span class="k">params</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">items</span><span class="p">)</span>
+        <div class='highlight'><pre>        <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="nf">Hash</span><span class="p">(</span><span class="k">params</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">items</span><span class="p">)</span>
         <span class="p">{</span>
             <span class="kt">string</span> <span class="n">key</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">,</span> <span class="n">items</span><span class="p">);</span>
             <span class="kt">byte</span><span class="p">[]</span> <span class="n">buffer</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
@@ -356,7 +357,7 @@ can uniquely identify a set of items as a bale e.g. for caching</p>
         <h3>Private Methods</h3>
       </td>
       <td class=code>
-        <div class='highlight'><pre>        </pre></div>
+        <div class='highlight'><pre></pre></div>
       </td>
     </tr>
     <tr id='section-23'>
@@ -394,11 +395,11 @@ again if this is the case</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-25">&#182;</a>
         </div>
-        <p>Build output file based on a random name and REAL path to output directory</p>
+        <p>Copy all files into a single output string and process</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">outputFilename</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;{0}.{1}&quot;</span><span class="p">,</span> <span class="n">Path</span><span class="p">.</span><span class="n">GetRandomFileName</span><span class="p">(),</span> <span class="n">extension</span><span class="p">);</span>
-                <span class="kt">string</span> <span class="n">outputFile</span> <span class="p">=</span> <span class="n">GetOutputFileWithPath</span><span class="p">(</span><span class="n">outputFilename</span><span class="p">);</span></pre></div>
+        <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">content</span> <span class="p">=</span> <span class="n">ConcatenateAllFiles</span><span class="p">();</span>
+                <span class="kt">string</span> <span class="n">filename</span> <span class="p">=</span> <span class="n">Hash</span><span class="p">(</span><span class="n">content</span><span class="p">);</span></pre></div>
       </td>
     </tr>
     <tr id='section-26'>
@@ -406,16 +407,55 @@ again if this is the case</p>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-26">&#182;</a>
         </div>
-        <p>Calculate relative values for the path so we can output the tag</p>
+        <p>Build output file based on content hash and REAL path to
+output directory</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">relativeOutputFile</span> <span class="p">=</span> <span class="n">GetRelativeOutputPath</span><span class="p">(</span><span class="n">outputFilename</span><span class="p">);</span></pre></div>
+        <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">outputFilename</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;{0}.{1}&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">extension</span><span class="p">);</span>
+                <span class="kt">string</span> <span class="n">outputFile</span> <span class="p">=</span> <span class="n">GetOutputFileWithPath</span><span class="p">(</span><span class="n">outputFilename</span><span class="p">);</span></pre></div>
       </td>
     </tr>
     <tr id='section-27'>
       <td class=docs>
         <div class="pilwrap">
           <a class="pilcrow" href="#section-27">&#182;</a>
+        </div>
+        <p>Ensure file doesn&rsquo;t exist before processing it.  This means
+newly added processors will not get processed.  There needs
+to be a cleaner way to do this.</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>                <span class="k">if</span> <span class="p">(!</span><span class="n">File</span><span class="p">.</span><span class="n">Exists</span><span class="p">(</span><span class="n">outputFile</span><span class="p">))</span>
+                <span class="p">{</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-28'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-28">&#182;</a>
+        </div>
+        <p>Write contents to file</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>                    <span class="n">File</span><span class="p">.</span><span class="n">WriteAllText</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="n">content</span><span class="p">);</span>
+                <span class="p">}</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-29'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-29">&#182;</a>
+        </div>
+        <p>Calculate relative values for the path so we can output the tag</p>
+      </td>
+      <td class=code>
+        <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">relativeOutputFile</span> <span class="p">=</span> <span class="n">GetRelativeOutputPath</span><span class="p">(</span><span class="n">outputFilename</span><span class="p">);</span></pre></div>
+      </td>
+    </tr>
+    <tr id='section-30'>
+      <td class=docs>
+        <div class="pilwrap">
+          <a class="pilcrow" href="#section-30">&#182;</a>
         </div>
         <p>Create the script tag from the path and the supplied template
 and a join of all custom attributes</p>
@@ -425,17 +465,16 @@ and a join of all custom attributes</p>
                 <span class="kt">string</span> <span class="n">tag</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">relativeOutputFile</span><span class="p">,</span> <span class="n">attrs</span><span class="p">);</span></pre></div>
       </td>
     </tr>
-    <tr id='section-28'>
+    <tr id='section-31'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-28">&#182;</a>
+          <a class="pilcrow" href="#section-31">&#182;</a>
         </div>
-        <p>Copy all files into a single output file</p>
+        <p>Cache generated tag and mark bale as generated to prevent
+future unnecessary processing.</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>                <span class="n">ConcatenateAllFiles</span><span class="p">(</span><span class="n">outputFile</span><span class="p">);</span>
-
-                <span class="n">_generatedTag</span> <span class="p">=</span> <span class="n">tag</span><span class="p">;</span>
+        <div class='highlight'><pre>                <span class="n">_generatedTag</span> <span class="p">=</span> <span class="n">tag</span><span class="p">;</span>
                 <span class="n">_isGenerated</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
             <span class="p">}</span>
 
@@ -444,10 +483,10 @@ and a join of all custom attributes</p>
         </pre></div>
       </td>
     </tr>
-    <tr id='section-29'>
+    <tr id='section-32'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-29">&#182;</a>
+          <a class="pilcrow" href="#section-32">&#182;</a>
         </div>
         <p><code>GetOutputFileWithPath()</code> takes a filename of an output and resolves
 the full physical path using the Baler classes configuration for
@@ -463,10 +502,10 @@ the <code>OutputPath</code>.</p>
         <span class="p">}</span></pre></div>
       </td>
     </tr>
-    <tr id='section-30'>
+    <tr id='section-33'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-30">&#182;</a>
+          <a class="pilcrow" href="#section-33">&#182;</a>
         </div>
         <p>Similar to <code>GetOutputFileWithPath</code> except rather than output the
 physical path to a file it determines the path relative to the root
@@ -482,24 +521,25 @@ of the web application</p>
         <span class="p">}</span></pre></div>
       </td>
     </tr>
-    <tr id='section-31'>
+    <tr id='section-34'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-31">&#182;</a>
+          <a class="pilcrow" href="#section-34">&#182;</a>
         </div>
         <p>Iterates over the current bales items and processes and
-concatenates them into the passed in output file</p>
+concatenates them into a StringBuffer and returns the resultant
+string</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>        <span class="k">private</span> <span class="k">void</span> <span class="nf">ConcatenateAllFiles</span><span class="p">(</span><span class="kt">string</span> <span class="n">outputFile</span><span class="p">)</span>
+        <div class='highlight'><pre>        <span class="k">private</span> <span class="kt">string</span> <span class="nf">ConcatenateAllFiles</span><span class="p">()</span>
         <span class="p">{</span>
             <span class="n">StringBuilder</span> <span class="n">mergedItems</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span></pre></div>
       </td>
     </tr>
-    <tr id='section-32'>
+    <tr id='section-35'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-32">&#182;</a>
+          <a class="pilcrow" href="#section-35">&#182;</a>
         </div>
         <p>Loop over each script reference in the bale collection</p>
       </td>
@@ -508,10 +548,10 @@ concatenates them into the passed in output file</p>
             <span class="p">{</span></pre></div>
       </td>
     </tr>
-    <tr id='section-33'>
+    <tr id='section-36'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-33">&#182;</a>
+          <a class="pilcrow" href="#section-36">&#182;</a>
         </div>
         <p>Derive physical path to the current script source</p>
       </td>
@@ -519,10 +559,10 @@ concatenates them into the passed in output file</p>
         <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">scriptFile</span> <span class="p">=</span> <span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Server</span><span class="p">.</span><span class="n">MapPath</span><span class="p">(</span><span class="n">script</span><span class="p">);</span></pre></div>
       </td>
     </tr>
-    <tr id='section-34'>
+    <tr id='section-37'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-34">&#182;</a>
+          <a class="pilcrow" href="#section-37">&#182;</a>
         </div>
         <p>Read the contents of the input file</p>
       </td>
@@ -530,10 +570,10 @@ concatenates them into the passed in output file</p>
         <div class='highlight'><pre>                <span class="kt">string</span> <span class="n">contents</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="n">ReadAllText</span><span class="p">(</span><span class="n">scriptFile</span><span class="p">);</span></pre></div>
       </td>
     </tr>
-    <tr id='section-35'>
+    <tr id='section-38'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-35">&#182;</a>
+          <a class="pilcrow" href="#section-38">&#182;</a>
         </div>
         <p>Perform some pre-processing of items if a before function
 has been specified</p>
@@ -545,10 +585,10 @@ has been specified</p>
                 <span class="p">}</span></pre></div>
       </td>
     </tr>
-    <tr id='section-36'>
+    <tr id='section-39'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-36">&#182;</a>
+          <a class="pilcrow" href="#section-39">&#182;</a>
         </div>
         <p>append contents of this item to the ouput file</p>
       </td>
@@ -559,10 +599,10 @@ has been specified</p>
             <span class="kt">string</span> <span class="n">outputContent</span> <span class="p">=</span> <span class="n">mergedItems</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span></pre></div>
       </td>
     </tr>
-    <tr id='section-37'>
+    <tr id='section-40'>
       <td class=docs>
         <div class="pilwrap">
-          <a class="pilcrow" href="#section-37">&#182;</a>
+          <a class="pilcrow" href="#section-40">&#182;</a>
         </div>
         <p>Perform some post-processing of bale if an after function has
 been specified</p>
@@ -574,7 +614,7 @@ been specified</p>
                 <span class="n">outputContent</span> <span class="p">=</span> <span class="n">after</span><span class="p">(</span><span class="n">outputContent</span><span class="p">);</span>
             <span class="p">}</span>
 
-            <span class="n">File</span><span class="p">.</span><span class="n">WriteAllText</span><span class="p">(</span><span class="n">outputFile</span><span class="p">,</span> <span class="n">outputContent</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">outputContent</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span></pre></div>

@@ -15,6 +15,7 @@
           <a class="source" href="Bale.html">Bale.cs</a>
           <a class="source" href="Baler.html">Baler.cs</a>
           <a class="source" href="BalerConfiguration.html">BalerConfiguration.cs</a>
+          <a class="source" href="FileWriter.html">FileWriter.cs</a>
           <a class="source" href="IBale.html">IBale.cs</a>
       </div>
     </div>
@@ -124,7 +125,7 @@ the instanstiated bale that can be further configured.</p>
 cached value otherwise create a new bale and cache it</p>
       </td>
       <td class=code>
-        <div class='highlight'><pre>            <span class="kt">string</span> <span class="n">key</span> <span class="p">=</span> <span class="n">Bale</span><span class="p">.</span><span class="n">GenerateKey</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
+        <div class='highlight'><pre>            <span class="kt">string</span> <span class="n">key</span> <span class="p">=</span> <span class="n">Bale</span><span class="p">.</span><span class="n">Hash</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(!</span><span class="n">_cache</span><span class="p">.</span><span class="n">ContainsKey</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
             <span class="p">{</span>
                 <span class="n">_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Bale</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
