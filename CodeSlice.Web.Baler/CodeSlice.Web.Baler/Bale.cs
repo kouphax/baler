@@ -102,7 +102,7 @@ namespace CodeSlice.Web.Baler
         // such as `async` or `defer`
         public IBale Attr(string name, string value = "")
         {
-            if (string.IsNullOrWhiteSpace(value))
+            if (string.IsNullOrEmpty(value.Trim()))
             {
                 _attrs.Add(string.Format("{0}", name));
             }
@@ -179,7 +179,7 @@ namespace CodeSlice.Web.Baler
 
                 // Create the script tag from the path and the supplied template
                 // and a join of all custom attributes
-                string attrs = string.Join(" ", _attrs);
+                string attrs = string.Join(" ", _attrs.ToArray());
                 string tag = string.Format(template, relativeOutputFile, attrs);
 
                 // Cache generated tag and mark bale as generated to prevent 
