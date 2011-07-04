@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler", "CodeSlice.Web.Baler\Baler.csproj", "{E2C74970-26BE-474E-8974-7D4D4BF4DBB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baler.Test", "CodeSlice.Web.Baler.Test\Baler.Test.csproj", "{4E79BDDE-1C46-45B2-A954-753B663589C1}"

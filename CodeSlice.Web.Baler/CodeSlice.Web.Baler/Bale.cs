@@ -76,18 +76,28 @@ namespace CodeSlice.Web.Baler
         // Adds a function to execute on each item of the bale prior to being 
         // merged.  It gets the path and the contents and returns the 
         // transformed content
-        public IBale Before(Func<string, string, string> processor, int order = 0)
+        public IBale Before(Func<string, string, string> processor, int order)
         {
             _before.Add(order, processor);
             return this;
         }
 
+        public IBale Before(Func<string, string, string> processor)
+        {
+            return Before(processor, 0);
+        }
+
         // Adds a function to execute on the concatenated bale content.  
         // It gets the contents and returns the transformed content
-        public IBale After(Func<string, string> processor, int order = 0)
+        public IBale After(Func<string, string> processor, int order)
         {
             _after.Add(order, processor);
             return this;
+        }
+
+        public IBale After(Func<string, string> processor)
+        {
+            return After(processor, 0);
         }
 
         // Adds a custom attribute to the output tag for this bale e.g.
@@ -100,7 +110,7 @@ namespace CodeSlice.Web.Baler
         // 
         // Supports attributes with values as well as attributes with no values 
         // such as `async` or `defer`
-        public IBale Attr(string name, string value = "")
+        public IBale Attr(string name, string value)
         {
             if (string.IsNullOrEmpty(value.Trim()))
             {
@@ -113,6 +123,11 @@ namespace CodeSlice.Web.Baler
 
             return this;
         }
+        public IBale Attr(string name)
+        {
+            return Attr(name, "");
+        }
+
 
         // ### Public Properties
 
