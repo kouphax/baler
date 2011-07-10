@@ -15,11 +15,13 @@ namespace CodeSlice.Web.Baler
         // Adds a function to execute on each item of the bale prior to being 
         // merged.  It gets the path and the contents and returns the 
         // transformed content
-        IBale Before(Func<string,string,string> processor, int order = 0);
+        IBale Before(Func<string,string,string> processor, int order);
+        IBale Before(Func<string, string, string> processor);
 
         // Adds a function to execute on the concatenated bale content.  
         // It gets the contents and returns the transformed content
-        IBale After(Func<string, string> processor, int order = 0);
+        IBale After(Func<string, string> processor, int order);
+        IBale After(Func<string, string> processor);
 
         // Adds a custom attribute to the output tag for this bale e.g.
         //
@@ -28,6 +30,7 @@ namespace CodeSlice.Web.Baler
         // should produce a link tag like so
         //
         //    <link rel="stylesheet" type="text/css" href="..." media="screen" /> 
-        IBale Attr(string name, string value = "");
+        IBale Attr(string name, string value);
+        IBale Attr(string name);
     }
 }

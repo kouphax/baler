@@ -1,14 +1,13 @@
-*8th June 2011*
-_v0.2_
-
-- Updated @IBale.Attr@ to allow attributes that have no value to be specified
-
-*8th June 2011*
-_v0.2_
-
-- Added @IBale.Attr(string name, string value)@ method for adding custom attributes.
-
-*31st May 2011*
-_v0.1_
-
-- Intial Release
+*0.4.1
+- Added VS2008 csproj files
+- Removed VS2010 specific features
+*0.4.0 (June 20 th, 2011)*
+- Compiled against .NET3.5
+*0.3.0 (June 16 th, 2011)*
+- Changed file caching mechanism. Files only re-written if their contents change. Thanks to edazdarevic for the idea.
+*0.2.1 (June 8 th, 2011)*
+- IBale.Attr now supports adding attributes with no value such as async or defer
+*0.2.0 (June 8 th, 2011)*
+- Added IBale.Attr(string name, string value) for adding custom attributes to the bales output tag.
+*0.1.0 (May 31 st, 2011)*
+- Initial alpha release.
