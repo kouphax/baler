@@ -1,0 +1,11 @@
+syntax: glob
+
+packages/
+*.suo
+bin/
+obj/
+*.csproj.user
+*.crunchproject.local.xml
+*.crunchsolution.cache
+._.hgignore
+*.crunchsolution.local.xml
